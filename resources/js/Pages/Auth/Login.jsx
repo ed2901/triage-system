@@ -25,6 +25,12 @@ export default function Login({ status, canResetPassword }) {
         <GuestLayout>
             <Head title="Log in" />
 
+            <div className="flex items-center justify-center mb-4 mt-0"> {/* Ajusta el margen superior aquí */}
+                {/* Logo de medicina */}
+                <img src="/images/med_logo.png" alt="Logo de Medicina" className="w-12 h-12 mr-2" />
+                <h1 className="text-2xl font-semibold">Iniciar Sesión</h1>
+            </div>
+
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
                     {status}
