@@ -5,6 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Register from './Register'; // Asegúrate de que la ruta sea correcta
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -26,7 +27,6 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             <div className="flex items-center justify-center mb-4">
-                {/* Logo de medicina */}
                 <img src="/images/med_logo.png" alt="Logo de Medicina" className="w-12 h-12 mr-2" />
                 <h1 className="text-2xl font-semibold">Iniciar Sesión</h1>
             </div>
@@ -76,9 +76,7 @@ export default function Login({ status, canResetPassword }) {
                         <Checkbox
                             name="remember"
                             checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
+                            onChange={(e) => setData('remember', e.target.checked)}
                         />
                         <span className="ms-2 text-sm text-gray-600">
                             Remember me
@@ -101,6 +99,12 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                 </div>
             </form>
+
+            {/* Aquí llamas a la vista de registro */}
+            <div className="mt-8">
+                <h2 className="text-lg font-semibold">¿No tienes una cuenta?</h2>
+                <Register /> {/* Llama el componente de registro aquí */}
+            </div>
         </GuestLayout>
     );
 }

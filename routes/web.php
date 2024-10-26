@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\RegisteredUserController; // Asegúrate de importar el controlador
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,12 @@ Route::post('password/reset', [NewPasswordController::class, 'store'])->name('pa
 Route::get('login', function () {
     return Inertia::render('Auth/Login'); // Asegúrate de tener la vista de login
 })->name('login');
+
+// Ruta de registro
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register'); // Mostrar el formulario de registro
+    Route::post('register', [RegisteredUserController::class, 'store']); // Manejar el registro
+});
 
 // Ruta de cierre de sesión
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
